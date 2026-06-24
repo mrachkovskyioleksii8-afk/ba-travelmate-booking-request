@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TravelMate — знайди ідеальний готель</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-color: #fdf9f6;
+        --text-dark: #1c1917;
+        --text-muted: #78716c;
+        --brand-color: #b24b00;
+        --brand-hover: #9a3f00;
+        --border-color: #e7e5e4;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-dark);
+        min-height: 100vh;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+
+      /* Header */
+      .header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-bottom: 2rem;
+      }
+
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--brand-color);
+      }
+
+      .nav {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav a {
+        font-weight: 500;
+        color: #444;
+      }
+
+      .nav a:hover {
+        color: var(--brand-color);
+      }
+
+      .auth {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .btn-dark {
+        background: var(--text-dark);
+        color: #fff;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 2rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .btn-dark:hover {
+        background: #333;
+      }
+
+      /* Hero */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        padding: 2rem 0 4rem;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: 1px solid #ddb88c;
+        border-radius: 2rem;
+        color: #a36a00;
+        font-size: 0.85rem;
+        font-weight: 600;
+        background: rgba(221, 184, 140, 0.1);
+        margin-bottom: 1.5rem;
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero p {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        max-width: 420px;
+      }
+
+      .btn-primary {
+        display: inline-block;
+        background: var(--brand-color);
+        color: #fff;
+        padding: 1rem 2rem;
+        border-radius: 2rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-primary:hover {
+        background: var(--brand-hover);
+      }
+
+      .hero-image {
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      .hero-image img {
+        display: block;
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+      }
+
+      /* Search */
+      .search {
+        background: #fff;
+        border-radius: 1.25rem;
+        padding: 1.5rem;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+        margin-top: -2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .search h2 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+
+      .search-form {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr auto;
+        gap: 1rem;
+        align-items: end;
+      }
+
+      label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        margin-bottom: 0.35rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 0.75rem;
+        font: inherit;
+        background: #fff9f3;
+      }
+
+      input:focus {
+        outline: 2px solid rgba(178, 75, 0, 0.25);
+        border-color: var(--brand-color);
+      }
+
+      /* Features */
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        padding: 3rem 0;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .feature {
+        padding: 1.5rem;
+        background: #fff;
+        border-radius: 1rem;
+        border: 1px solid var(--border-color);
+      }
+
+      .feature h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .feature p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 2rem 0;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        border-top: 1px solid var(--border-color);
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .search-form {
+          grid-template-columns: 1fr;
+        }
+
+        .features {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <a href="home.html" class="logo">TravelMate</a>
+        <nav class="nav">
+          <a href="#">Напрямки</a>
+          <a href="#">Журнал</a>
+          <a href="#">Про нас</a>
+        </nav>
+        <div class="auth">
+          <a href="#">Увійти</a>
+          <button class="btn-dark" type="button">Реєстрація</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div>
+            <span class="badge">Розумний спосіб подорожувати</span>
+            <h1>Знайди і забронюй ідеальний готель за кілька хвилин</h1>
+            <p>
+              Порівнюй ціни, рейтинги та умови бронювання з різних платформ в
+              одному місці — без десятків відкритих вкладок.
+            </p>
+            <a class="btn-primary" href="#search">Знайти готель</a>
+          </div>
+          <div class="hero-image">
+            <img
+              src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80"
+              alt="Затишний готельний номер"
+            />
+          </div>
+        </section>
+
+        <section class="search" id="search">
+          <h2>Швидкий пошук пропозицій</h2>
+          <form class="search-form" action="#" method="get">
+            <div>
+              <label for="destination">Місто або готель</label>
+              <input
+                id="destination"
+                name="destination"
+                type="text"
+                placeholder="Париж, Франція"
+                required
+              />
+            </div>
+            <div>
+              <label for="checkin">Заїзд</label>
+              <input id="checkin" name="checkin" type="date" required />
+            </div>
+            <div>
+              <label for="checkout">Виїзд</label>
+              <input id="checkout" name="checkout" type="date" required />
+            </div>
+            <button class="btn-primary" type="submit">Шукати</button>
+          </form>
+        </section>
+
+        <section class="features">
+          <article class="feature">
+            <h3>Найкраща ціна</h3>
+            <p>Гарантія вигідної пропозиції серед перевірених платформ.</p>
+          </article>
+          <article class="feature">
+            <h3>Чесні відгуки</h3>
+            <p>Рейтинги та відгуки мандрівників у зручному форматі.</p>
+          </article>
+          <article class="feature">
+            <h3>Швидке бронювання</h3>
+            <p>Обери готель і перейди до бронювання без зайвих кроків.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>&copy; 2026 TravelMate. Навчальний проєкт Mate academy.</p>
+      </footer>
+    </div>
+  </body>
+</html>
